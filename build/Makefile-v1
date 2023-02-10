@@ -539,9 +539,10 @@ distdir: FORCE
 
 
 clean: compiler_clean 
+	mv Makefile.orig Makefile
 	-$(DEL_FILE) $(OBJECTS)
 	-$(DEL_FILE) *~ core *.core
-	mv Makefile.orig Makefile
+	
 
 
 distclean: clean 

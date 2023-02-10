@@ -538,10 +538,11 @@ distdir: FORCE
 	$(COPY_FILE) --parents ../app/mainwindow.ui $(DISTDIR)/
 
 
-clean: compiler_clean 
+clean: compiler_clean
+	mv ./Makefile.orig ./Makefile
 	-$(DEL_FILE) $(OBJECTS)
 	-$(DEL_FILE) *~ core *.core
-	mv Makefile.orig Makefile
+	
 
 
 
