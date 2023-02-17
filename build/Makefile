@@ -184,6 +184,7 @@ DIST          = /home/fabien/Qt5.7.0/5.7/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/fabien/Qt5.7.0/5.7/gcc_64/mkspecs/features/qt_config.prf \
 		/home/fabien/Qt5.7.0/5.7/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/home/fabien/Qt5.7.0/5.7/gcc_64/mkspecs/features/spec_post.prf \
+		../app/.qmake.stash \
 		/home/fabien/Qt5.7.0/5.7/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/fabien/Qt5.7.0/5.7/gcc_64/mkspecs/features/default_pre.prf \
 		/home/fabien/Qt5.7.0/5.7/gcc_64/mkspecs/features/resolve_config.prf \
@@ -345,6 +346,7 @@ Makefile: ../app/app.pro /home/fabien/Qt5.7.0/5.7/gcc_64/mkspecs/linux-g++/qmake
 		/home/fabien/Qt5.7.0/5.7/gcc_64/mkspecs/features/qt_config.prf \
 		/home/fabien/Qt5.7.0/5.7/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/home/fabien/Qt5.7.0/5.7/gcc_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/home/fabien/Qt5.7.0/5.7/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/fabien/Qt5.7.0/5.7/gcc_64/mkspecs/features/default_pre.prf \
 		/home/fabien/Qt5.7.0/5.7/gcc_64/mkspecs/features/resolve_config.prf \
@@ -498,6 +500,7 @@ Makefile: ../app/app.pro /home/fabien/Qt5.7.0/5.7/gcc_64/mkspecs/linux-g++/qmake
 /home/fabien/Qt5.7.0/5.7/gcc_64/mkspecs/features/qt_config.prf:
 /home/fabien/Qt5.7.0/5.7/gcc_64/mkspecs/linux-g++/qmake.conf:
 /home/fabien/Qt5.7.0/5.7/gcc_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /home/fabien/Qt5.7.0/5.7/gcc_64/mkspecs/features/exclusive_builds.prf:
 /home/fabien/Qt5.7.0/5.7/gcc_64/mkspecs/features/default_pre.prf:
 /home/fabien/Qt5.7.0/5.7/gcc_64/mkspecs/features/resolve_config.prf:
@@ -898,7 +901,68 @@ mainwindow.o: ../app/mainwindow.cpp ../app/mainwindow.h \
 		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtGui/qtouchdevice.h \
 		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qtabwidget.h \
 		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtGui/qicon.h \
-		ui_mainwindow.h
+		ui_mainwindow.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtCore/QVariant \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/QAction \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qaction.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qactiongroup.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/QApplication \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qapplication.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtCore/qcoreapplication.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtCore/qeventloop.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtGui/qguiapplication.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtGui/qinputmethod.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/QButtonGroup \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qbuttongroup.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/QHeaderView \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qheaderview.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qabstractitemview.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qframe.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtCore/qabstractitemmodel.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtCore/qitemselectionmodel.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qstyleoption.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtGui/qvalidator.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtCore/qregularexpression.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qslider.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qabstractslider.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qstyle.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qtabbar.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qrubberband.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/QMenu \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qmenu.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/QMenuBar \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qmenubar.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/QPushButton \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qpushbutton.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/QStatusBar \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qstatusbar.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/QToolBar \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qtoolbar.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/QTreeView \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qtreeview.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/QWidget \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/QFileSystemModel \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qfilesystemmodel.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtCore/qdir.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtCore/qfileinfo.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtCore/qdiriterator.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/QFileDialog \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qfiledialog.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qdialog.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/QMessageBox \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qmessagebox.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/QRadioButton \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qradiobutton.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/QVBoxLayout \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qboxlayout.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qlayout.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qlayoutitem.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qgridlayout.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../app/mainwindow.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
