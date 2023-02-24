@@ -33,8 +33,12 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_treeView_doubleClicked(const QModelIndex &index);
+
 private:
     Ui::MainWindow *ui;
+    QString currentDirectory;
+    int lastPictureAdded;
 };
 
 #endif // MAINWINDOW_H

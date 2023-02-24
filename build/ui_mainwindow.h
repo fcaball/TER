@@ -14,6 +14,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
@@ -38,6 +39,8 @@ public:
     QWidget *centralWidget;
     QPushButton *pushButton;
     QTreeView *treeView;
+    QLabel *picture1;
+    QLabel *picture2;
     QMenuBar *menuBar;
     QMenu *menuTools;
     QMenu *menu3D_reconsruct;
@@ -73,11 +76,19 @@ public:
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         pushButton = new QPushButton(centralWidget);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(1170, 540, 80, 23));
+        pushButton->setGeometry(QRect(1210, 600, 80, 23));
         treeView = new QTreeView(centralWidget);
         treeView->setObjectName(QStringLiteral("treeView"));
         treeView->setGeometry(QRect(10, 10, 211, 581));
         treeView->setAutoFillBackground(false);
+        picture1 = new QLabel(centralWidget);
+        picture1->setObjectName(QStringLiteral("picture1"));
+        picture1->setGeometry(QRect(270, 40, 471, 451));
+        picture1->setScaledContents(true);
+        picture2 = new QLabel(centralWidget);
+        picture2->setObjectName(QStringLiteral("picture2"));
+        picture2->setGeometry(QRect(800, 40, 471, 451));
+        picture2->setScaledContents(true);
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -126,6 +137,8 @@ public:
         actionTriangulation->setText(QApplication::translate("MainWindow", "Triangulation", 0));
         actionContact_us->setText(QApplication::translate("MainWindow", "Contact us", 0));
         pushButton->setText(QApplication::translate("MainWindow", "3D PRINT", 0));
+        picture1->setText(QString());
+        picture2->setText(QString());
         menuTools->setTitle(QApplication::translate("MainWindow", "Tools", 0));
         menu3D_reconsruct->setTitle(QApplication::translate("MainWindow", "3D reconsruct", 0));
         menuHelp->setTitle(QApplication::translate("MainWindow", "Help", 0));
