@@ -41,6 +41,8 @@ public:
     QTreeView *treeView;
     QLabel *picture1;
     QLabel *picture2;
+    QLabel *textimage1;
+    QLabel *textimage2;
     QMenuBar *menuBar;
     QMenu *menuTools;
     QMenu *menu3D_reconsruct;
@@ -83,12 +85,18 @@ public:
         treeView->setAutoFillBackground(false);
         picture1 = new QLabel(centralWidget);
         picture1->setObjectName(QStringLiteral("picture1"));
-        picture1->setGeometry(QRect(270, 40, 471, 451));
+        picture1->setGeometry(QRect(260, 10, 471, 451));
         picture1->setScaledContents(true);
         picture2 = new QLabel(centralWidget);
         picture2->setObjectName(QStringLiteral("picture2"));
-        picture2->setGeometry(QRect(800, 40, 471, 451));
+        picture2->setGeometry(QRect(780, 10, 471, 451));
         picture2->setScaledContents(true);
+        textimage1 = new QLabel(centralWidget);
+        textimage1->setObjectName(QStringLiteral("textimage1"));
+        textimage1->setGeometry(QRect(260, 490, 471, 71));
+        textimage2 = new QLabel(centralWidget);
+        textimage2->setObjectName(QStringLiteral("textimage2"));
+        textimage2->setGeometry(QRect(780, 480, 471, 71));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -139,6 +147,10 @@ public:
         pushButton->setText(QApplication::translate("MainWindow", "3D PRINT", 0));
         picture1->setText(QString());
         picture2->setText(QString());
+        textimage1->setText(QApplication::translate("MainWindow", "Caract\303\251ristiques image 1:\n"
+"", 0));
+        textimage2->setText(QApplication::translate("MainWindow", "Caract\303\251ristiques image 2:\n"
+"", 0));
         menuTools->setTitle(QApplication::translate("MainWindow", "Tools", 0));
         menu3D_reconsruct->setTitle(QApplication::translate("MainWindow", "3D reconsruct", 0));
         menuHelp->setTitle(QApplication::translate("MainWindow", "Help", 0));

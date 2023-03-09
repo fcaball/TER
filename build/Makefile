@@ -932,6 +932,8 @@ mainwindow.o: ../app/mainwindow.cpp ../app/mainwindow.h \
 		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qstyle.h \
 		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qtabbar.h \
 		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qrubberband.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/QLabel \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qlabel.h \
 		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/QMenu \
 		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qmenu.h \
 		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/QMenuBar \
@@ -956,13 +958,41 @@ mainwindow.o: ../app/mainwindow.cpp ../app/mainwindow.h \
 		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qdialog.h \
 		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/QMessageBox \
 		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qmessagebox.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtCore/QModelIndex \
 		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/QRadioButton \
 		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qradiobutton.h \
 		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/QVBoxLayout \
 		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qboxlayout.h \
 		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qlayout.h \
 		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qlayoutitem.h \
-		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qgridlayout.h
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qgridlayout.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtGui/QPixmap \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/QInputDialog \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qinputdialog.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qlineedit.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtGui/qtextcursor.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtGui/qtextformat.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtGui/qpen.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtGui/qtextoption.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtGui/QImageReader \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtGui/qimagereader.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtGui/qimageiohandler.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtCore/qplugin.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtCore/qpointer.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtCore/qjsonobject.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtCore/qjsonvalue.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtCore/qfactoryinterface.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtCore/QTimer \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtCore/qtimer.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtCore/qbasictimer.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtCore/QMimeData \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtCore/qmimedata.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/QCompleter \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/qcompleter.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtCore/QStringListModel \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtCore/qstringlistmodel.h \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtGui/QContextMenuEvent \
+		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/QStyleOptionFrameV3
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../app/mainwindow.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
