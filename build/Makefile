@@ -15,7 +15,7 @@ CXX           = g++
 DEFINES       = -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -g -std=gnu++11 -Wall -W -D_REENTRANT -fPIC $(DEFINES)
-INCPATH       = -I../app -I. -I/home/fabien/Qt5.7.0/5.7/gcc_64/include -I/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets -I/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtGui -I/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtCore -I. -I. -I/home/fabien/Qt5.7.0/5.7/gcc_64/mkspecs/linux-g++
+INCPATH       = -I../app -I. -isystem /usr/local/include -I/home/fabien/Qt5.7.0/5.7/gcc_64/include -I/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets -I/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtGui -I/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtCore -I. -I. -I/home/fabien/Qt5.7.0/5.7/gcc_64/mkspecs/linux-g++
 QMAKE         = /home/fabien/Qt5.7.0/5.7/gcc_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -33,10 +33,10 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = app1.0.0
-DISTDIR = /home/fabien/Documents/FDS/M1/TER/build/.tmp/app1.0.0
+DISTDIR = /home/fabien/Documents/FDS/M1/TER/TER/build/.tmp/app1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-rpath,/home/fabien/Qt5.7.0/5.7/gcc_64/lib
-LIBS          = $(SUBLIBS) -L/home/fabien/Qt5.7.0/5.7/gcc_64/lib -lQt5Widgets -L/usr/lib64 -lQt5Gui -lQt5Core -lGL -lpthread 
+LIBS          = $(SUBLIBS) -L/usr/local/lib -lopencv_world -L/home/fabien/Qt5.7.0/5.7/gcc_64/lib -lQt5Widgets -L/usr/lib64 -lQt5Gui -lQt5Core -lGL -lpthread 
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -187,6 +187,7 @@ DIST          = /home/fabien/Qt5.7.0/5.7/gcc_64/mkspecs/features/spec_pre.prf \
 		../app/.qmake.stash \
 		/home/fabien/Qt5.7.0/5.7/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/fabien/Qt5.7.0/5.7/gcc_64/mkspecs/features/default_pre.prf \
+		../opencv-4.7.0/opencv.pri \
 		/home/fabien/Qt5.7.0/5.7/gcc_64/mkspecs/features/resolve_config.prf \
 		/home/fabien/Qt5.7.0/5.7/gcc_64/mkspecs/features/default_post.prf \
 		/home/fabien/Qt5.7.0/5.7/gcc_64/mkspecs/features/qml_debug.prf \
@@ -349,6 +350,7 @@ Makefile: ../app/app.pro /home/fabien/Qt5.7.0/5.7/gcc_64/mkspecs/linux-g++/qmake
 		.qmake.stash \
 		/home/fabien/Qt5.7.0/5.7/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/fabien/Qt5.7.0/5.7/gcc_64/mkspecs/features/default_pre.prf \
+		../opencv-4.7.0/opencv.pri \
 		/home/fabien/Qt5.7.0/5.7/gcc_64/mkspecs/features/resolve_config.prf \
 		/home/fabien/Qt5.7.0/5.7/gcc_64/mkspecs/features/default_post.prf \
 		/home/fabien/Qt5.7.0/5.7/gcc_64/mkspecs/features/qml_debug.prf \
@@ -503,6 +505,7 @@ Makefile: ../app/app.pro /home/fabien/Qt5.7.0/5.7/gcc_64/mkspecs/linux-g++/qmake
 .qmake.stash:
 /home/fabien/Qt5.7.0/5.7/gcc_64/mkspecs/features/exclusive_builds.prf:
 /home/fabien/Qt5.7.0/5.7/gcc_64/mkspecs/features/default_pre.prf:
+../opencv-4.7.0/opencv.pri:
 /home/fabien/Qt5.7.0/5.7/gcc_64/mkspecs/features/resolve_config.prf:
 /home/fabien/Qt5.7.0/5.7/gcc_64/mkspecs/features/default_post.prf:
 /home/fabien/Qt5.7.0/5.7/gcc_64/mkspecs/features/qml_debug.prf:
@@ -669,7 +672,7 @@ moc_mainwindow.cpp: /home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets/QMainWindo
 		/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtGui/qicon.h \
 		../app/mainwindow.h \
 		/home/fabien/Qt5.7.0/5.7/gcc_64/bin/moc
-	/home/fabien/Qt5.7.0/5.7/gcc_64/bin/moc $(DEFINES) -I/home/fabien/Qt5.7.0/5.7/gcc_64/mkspecs/linux-g++ -I/home/fabien/Documents/FDS/M1/TER/app -I/home/fabien/Qt5.7.0/5.7/gcc_64/include -I/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets -I/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtGui -I/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../app/mainwindow.h -o moc_mainwindow.cpp
+	/home/fabien/Qt5.7.0/5.7/gcc_64/bin/moc $(DEFINES) -I/home/fabien/Qt5.7.0/5.7/gcc_64/mkspecs/linux-g++ -I/home/fabien/Documents/FDS/M1/TER/TER/app -I/usr/local/include -I/home/fabien/Qt5.7.0/5.7/gcc_64/include -I/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtWidgets -I/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtGui -I/home/fabien/Qt5.7.0/5.7/gcc_64/include/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../app/mainwindow.h -o moc_mainwindow.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:

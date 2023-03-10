@@ -2,6 +2,15 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <opencv2/opencv.hpp>
+#include <opencv2/features2d/features2d.hpp>
+#include <opencv2/calib3d.hpp>
+#include <stdio.h>
+#include <iostream>
+
+
+
+
 
 namespace Ui {
 class MainWindow;
@@ -35,10 +44,19 @@ private slots:
 
     void on_treeView_doubleClicked(const QModelIndex &index);
 
+    void getCaracteristiques(QString in, QString out,int nb);
+
+    void updatePictures(QString s1,int nb);
+
+
+
 private:
     Ui::MainWindow *ui;
     QString currentDirectory;
     int lastPictureAdded;
+    QString namePicture1;
+    QString namePicture2;
+
 };
 
 #endif // MAINWINDOW_H
