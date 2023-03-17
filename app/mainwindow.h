@@ -23,6 +23,8 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    void updatePictures(QString s1,int nb);
+
 
 private slots:
 
@@ -44,9 +46,6 @@ private slots:
 
     void on_treeView_doubleClicked(const QModelIndex &index);
 
-    void getCaracteristiques(QString in, QString out,int nb);
-
-    void updatePictures(QString s1,int nb);
 
 
 
@@ -56,7 +55,7 @@ private:
     int lastPictureAdded;
     QString namePicture1;
     QString namePicture2;
-
+    QString namePicture3;
 };
 
 #endif // MAINWINDOW_H

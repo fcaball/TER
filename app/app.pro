@@ -15,9 +15,11 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    images.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    images.h
 
 FORMS    += mainwindow.ui
 include(/home/fabien/Documents/FDS/M1/TER/TER/opencv-4.7.0/opencv.pri)
