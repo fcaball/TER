@@ -19,6 +19,7 @@
 #include <QContextMenuEvent>
 #include <QStyleOptionFrameV3>
 #include "images.h"
+
 MainWindow::MainWindow(QWidget *parent) :
 
                                           QMainWindow(parent),
