@@ -51,6 +51,8 @@ class images
 
          inline void _drawKeypoint(InputOutputArray img, const KeyPoint &p, const Scalar &color, DrawMatchesFlags flags);
 
+         bool reconstruction3D(QString arg1, QString arg2, QString arg3);
+
 
 
 };

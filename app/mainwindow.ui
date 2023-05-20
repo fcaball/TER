@@ -6,176 +6,333 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1300</width>
-    <height>689</height>
+    <width>1231</width>
+    <height>816</height>
    </rect>
+  </property>
+  <property name="palette">
+   <palette>
+    <active>
+     <colorrole role="Button">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>170</red>
+        <green>255</green>
+        <blue>127</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </active>
+    <inactive>
+     <colorrole role="Button">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>170</red>
+        <green>255</green>
+        <blue>127</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </inactive>
+    <disabled>
+     <colorrole role="Button">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>170</red>
+        <green>255</green>
+        <blue>127</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </disabled>
+   </palette>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QPushButton" name="pushButton">
+   <property name="palette">
+    <palette>
+     <active>
+      <colorrole role="Button">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>113</red>
+         <green>221</green>
+         <blue>116</blue>
+        </color>
+       </brush>
+      </colorrole>
+     </active>
+     <inactive>
+      <colorrole role="Button">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>113</red>
+         <green>221</green>
+         <blue>116</blue>
+        </color>
+       </brush>
+      </colorrole>
+     </inactive>
+     <disabled>
+      <colorrole role="Button">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>113</red>
+         <green>221</green>
+         <blue>116</blue>
+        </color>
+       </brush>
+      </colorrole>
+     </disabled>
+    </palette>
+   </property>
+   <widget class="QPushButton" name="slideleft">
     <property name="geometry">
      <rect>
-      <x>1210</x>
-      <y>600</y>
-      <width>80</width>
-      <height>23</height>
+      <x>230</x>
+      <y>0</y>
+      <width>191</width>
+      <height>401</height>
      </rect>
     </property>
     <property name="text">
-     <string>3D PRINT</string>
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="slideright">
+    <property name="geometry">
+     <rect>
+      <x>1040</x>
+      <y>0</y>
+      <width>191</width>
+      <height>401</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
    <widget class="QTreeView" name="treeView">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>10</y>
-      <width>211</width>
-      <height>581</height>
+      <y>1</y>
+      <width>201</width>
+      <height>401</height>
      </rect>
     </property>
-    <property name="autoFillBackground">
-     <bool>false</bool>
+    <property name="palette">
+     <palette>
+      <active>
+       <colorrole role="Button">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>0</red>
+          <green>170</green>
+          <blue>127</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </active>
+      <inactive>
+       <colorrole role="Button">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>0</red>
+          <green>170</green>
+          <blue>127</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </inactive>
+      <disabled>
+       <colorrole role="Button">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>0</red>
+          <green>170</green>
+          <blue>127</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </disabled>
+     </palette>
     </property>
    </widget>
-   <widget class="QLabel" name="picture1">
+   <widget class="QLabel" name="imagespace">
     <property name="geometry">
      <rect>
-      <x>260</x>
-      <y>10</y>
-      <width>471</width>
-      <height>451</height>
+      <x>460</x>
+      <y>20</y>
+      <width>541</width>
+      <height>361</height>
      </rect>
+    </property>
+    <property name="palette">
+     <palette>
+      <active>
+       <colorrole role="Button">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>85</red>
+          <green>170</green>
+          <blue>127</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </active>
+      <inactive>
+       <colorrole role="Button">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>85</red>
+          <green>170</green>
+          <blue>127</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </inactive>
+      <disabled>
+       <colorrole role="Button">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>85</red>
+          <green>170</green>
+          <blue>127</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </disabled>
+     </palette>
     </property>
     <property name="text">
      <string/>
     </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
    </widget>
-   <widget class="QLabel" name="picture2">
+   <widget class="QLabel" name="infosimage">
     <property name="geometry">
      <rect>
-      <x>780</x>
-      <y>10</y>
-      <width>471</width>
-      <height>451</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QLabel" name="textimage1">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>490</y>
-      <width>471</width>
-      <height>71</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QLabel { background-color :white ; color : black; }</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="textimage2">
-    <property name="geometry">
-     <rect>
-      <x>780</x>
-      <y>490</y>
-      <width>471</width>
-      <height>71</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QLabel { background-color :white ; color : black; }</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="picture3">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>10</y>
+      <x>230</x>
+      <y>410</y>
       <width>991</width>
-      <height>451</height>
+      <height>161</height>
      </rect>
+    </property>
+    <property name="palette">
+     <palette>
+      <active>
+       <colorrole role="Button">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>85</red>
+          <green>170</green>
+          <blue>127</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </active>
+      <inactive>
+       <colorrole role="Button">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>85</red>
+          <green>170</green>
+          <blue>127</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </inactive>
+      <disabled>
+       <colorrole role="Button">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>85</red>
+          <green>170</green>
+          <blue>127</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </disabled>
+     </palette>
     </property>
     <property name="text">
      <string/>
     </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
    </widget>
-   <widget class="QLabel" name="textimage3">
+   <widget class="QLabel" name="sliderholder">
     <property name="geometry">
      <rect>
-      <x>490</x>
-      <y>490</y>
-      <width>471</width>
-      <height>71</height>
+      <x>430</x>
+      <y>0</y>
+      <width>601</width>
+      <height>391</height>
      </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QLabel { background-color :white ; color : black; }</string>
     </property>
     <property name="text">
      <string/>
     </property>
    </widget>
+   <widget class="QCheckBox" name="checkBox">
+    <property name="geometry">
+     <rect>
+      <x>920</x>
+      <y>380</y>
+      <width>101</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Sélectionner</string>
+    </property>
+   </widget>
+   <zorder>imagespace</zorder>
+   <zorder>sliderholder</zorder>
+   <zorder>slideleft</zorder>
+   <zorder>slideright</zorder>
+   <zorder>treeView</zorder>
+   <zorder>infosimage</zorder>
+   <zorder>checkBox</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1300</width>
+     <width>1231</width>
      <height>20</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuTools">
+   <widget class="QMenu" name="menuOptions">
     <property name="title">
-     <string>Tools</string>
+     <string>Options</string>
+    </property>
+    <addaction name="actionExtraction_de_caract_ristiques"/>
+    <addaction name="actionMise_en_correspondance"/>
+    <addaction name="actionReconstruction_3D"/>
+   </widget>
+   <widget class="QMenu" name="menuOutils">
+    <property name="title">
+     <string>Outils</string>
     </property>
     <addaction name="actionZoom"/>
     <addaction name="actionZoom_2"/>
-   </widget>
-   <widget class="QMenu" name="menu3D_reconsruct">
-    <property name="title">
-     <string>3D reconsruct</string>
-    </property>
-    <addaction name="actionCaracteristics_extraction"/>
-    <addaction name="actionCorrespondance"/>
-    <addaction name="actionTriangulation"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
      <string>Help</string>
     </property>
-    <addaction name="actionContact_us"/>
    </widget>
-   <widget class="QMenu" name="menuFile">
+   <widget class="QMenu" name="menuOpen">
     <property name="title">
-     <string>File</string>
+     <string>Open</string>
     </property>
-    <addaction name="actionOpen_pictures_folder"/>
+    <addaction name="actionOpen_folder"/>
    </widget>
-   <addaction name="menuFile"/>
-   <addaction name="menuTools"/>
-   <addaction name="menu3D_reconsruct"/>
+   <addaction name="menuOpen"/>
+   <addaction name="menuOptions"/>
+   <addaction name="menuOutils"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
@@ -187,17 +344,19 @@
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
-  <action name="actionOpen_pictures_folder">
+  <action name="actionExtraction_de_caract_ristiques">
    <property name="text">
-    <string>Open pictures folder</string>
+    <string>Extraction de caractéristiques</string>
    </property>
-   <property name="font">
-    <font>
-     <family>OpenSymbol</family>
-    </font>
+  </action>
+  <action name="actionMise_en_correspondance">
+   <property name="text">
+    <string>Mise en correspondance</string>
    </property>
-   <property name="menuRole">
-    <enum>QAction::ApplicationSpecificRole</enum>
+  </action>
+  <action name="actionReconstruction_3D">
+   <property name="text">
+    <string>Reconstruction 3D</string>
    </property>
   </action>
   <action name="actionZoom">
@@ -207,27 +366,12 @@
   </action>
   <action name="actionZoom_2">
    <property name="text">
-    <string>Zoom -</string>
+    <string>Zoom - </string>
    </property>
   </action>
-  <action name="actionCaracteristics_extraction">
+  <action name="actionOpen_folder">
    <property name="text">
-    <string>Caracteristics extraction</string>
-   </property>
-  </action>
-  <action name="actionCorrespondance">
-   <property name="text">
-    <string>Correspondance</string>
-   </property>
-  </action>
-  <action name="actionTriangulation">
-   <property name="text">
-    <string>Triangulation</string>
-   </property>
-  </action>
-  <action name="actionContact_us">
-   <property name="text">
-    <string>Contact us</string>
+    <string>Open folder</string>
    </property>
   </action>
  </widget>

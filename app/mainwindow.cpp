@@ -1,32 +1,28 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QTreeView>
-#include <QFileSystemModel>
-#include <QAction>
-#include <QFileDialog>
-#include <QMessageBox>
-#include <QModelIndex>
-#include <QRadioButton>
-#include <QVBoxLayout>
-#include <QLabel>
-#include <QPixmap>
-#include <QInputDialog>
-#include <QImageReader>
-#include <QTimer>
-#include <QMimeData>
-#include <QCompleter>
-#include <QStringListModel>
-#include <QContextMenuEvent>
-#include <QStyleOptionFrameV3>
 #include "images.h"
+#include <QFileDialog>
+#include <QFileSystemModel>
+#include <QPixmap>
+#include <QVariant>
+#include <QMessageBox>
+#include <QString>
+#include <QLabel>
+#include <iostream>
+#include <QSize>
+#include <QImageReader>
+#include <QGraphicsOpacityEffect>
+#include <QPropertyAnimation>
 
 MainWindow::MainWindow(QWidget *parent) :
 
                                           QMainWindow(parent),
-                                          ui(new Ui::MainWindow)
+                                           ui(new Ui::MainWindow)
 {
 
     ui->setupUi(this);
+    ui->checkBox->setVisible(false);
+    image_checker=false;
 }
 
 MainWindow::~MainWindow()
@@ -34,18 +30,172 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_actionOpen_pictures_folder_triggered()
+
+void MainWindow::keyPressEvent(QKeyEvent *e)
 {
-    QFileDialog dialog(this);
-    dialog.setFileMode(QFileDialog::Directory);
-    const QString chosenFolder = dialog.getExistingDirectory(this, tr("Select Output Folder"), QDir::homePath());
-    QFileSystemModel *directory = new QFileSystemModel;
-    directory->setRootPath(chosenFolder);
-    ui->treeView->setModel(directory);
-    ui->treeView->setRootIndex(directory->index(chosenFolder));
-    this->currentDirectory = chosenFolder;
+}
+
+void MainWindow::on_actionOpen_folder_triggered()
+{
+    PATH = QFileDialog::getExistingDirectory(this, tr("Open directory"), "/home", QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+    QFileSystemModel *Dossier = new QFileSystemModel;
+    Dossier->setRootPath(PATH);
+    ui->treeView->setModel(Dossier);
+    ui->treeView->setRootIndex(Dossier->index(PATH));
+    this->currentDirectory=PATH;
     ui->treeView->setColumnWidth(0,200);
 }
+
+void MainWindow::renderImage(){
+    setImage(image_directory[i]);
+    namePicture=image_directory[i].split("/").back();
+}
+
+void MainWindow::infoImage(){
+    ui->infosimage->setText("");
+    setImageInfos(image_directory[i]);
+}
+
+void MainWindow::setImage(QString chemin){
+    QPixmap *image = new QPixmap(chemin);
+    ui->imagespace->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->imagespace->setPixmap(image->scaled(ui->imagespace->width(), ui->imagespace->height(), Qt::KeepAspectRatio));
+    if(std::count(ImagesSelectedForCorrespondance.begin(), ImagesSelectedForCorrespondance.end(), chemin)==0){
+        ui->checkBox->setChecked(false);
+    }else{
+        ui->checkBox->setChecked(true);
+    }
+}
+
+void MainWindow::start_animation(){
+    QPixmap image = temp_directory;
+    ui->sliderholder->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->sliderholder->setPixmap(image.scaled(ui->imagespace->width(), ui->imagespace->height(), Qt::KeepAspectRatio));
+
+    QGraphicsOpacityEffect *effect = new QGraphicsOpacityEffect();
+    QPropertyAnimation *anim = new QPropertyAnimation(effect, "opacity");
+
+    ui->imagespace->setGraphicsEffect(effect);
+    anim->setDuration(anim_period*1000);
+    anim->setStartValue(0.0);
+    anim->setEndValue(1.0);
+    anim->setEasingCurve(QEasingCurve::OutQuad);
+    connect(anim, &QPropertyAnimation::finished, [=](){});
+    anim->start(QAbstractAnimation::DeleteWhenStopped);
+}
+
+void MainWindow::end_animation(){
+    QGraphicsOpacityEffect *effect = new QGraphicsOpacityEffect();
+    QPropertyAnimation *anim = new QPropertyAnimation(effect, "opacity");
+
+    ui->sliderholder->setGraphicsEffect(effect);
+    anim->setDuration(anim_period*1000);
+    anim->setStartValue(1.0);
+    anim->setEndValue(0.0);
+    connect(anim, &QPropertyAnimation::finished, [=](){});
+    anim->start(QAbstractAnimation::DeleteWhenStopped);
+
+}
+
+void MainWindow::setAnimation(){
+    start_animation();
+    end_animation();
+}
+
+void MainWindow::setImageInfos(QString chemin){
+    QImageReader imagereader(chemin);
+    QString format(imagereader.format());
+    QString name(imagereader.fileName());
+    QSize size = imagereader.size();
+    QString width = QString::number(size.width());
+    QString height = QString::number(size.height());
+    ui->infosimage->setStyleSheet("QLabel { background-color : lightgrey; color : black; }");
+    ui->infosimage->setText(ui->infosimage->text() + "Nom : " + chemin + "\nType : " + format + "\nWidth : " + width + "\nHeight : " + height);
+}
+
+int MainWindow::randomize(int low, int high){
+    return qrand() % ((high + 1) - low) + low;
+}
+
+void MainWindow::previous_image(){
+    if (image_checker)
+    {
+        temp_directory = image_directory[i];
+        if (i == 0)
+        {
+            i = count - 1;
+        }
+        else
+        {
+            i--;
+        }
+
+        setAnimation();
+
+        if (anim_checker)
+        {
+
+            renderImage();
+
+            infoImage();
+
+        }
+        else
+        {
+            setAnimation();
+            renderImage();
+            infoImage();
+        }
+    }
+}
+
+void MainWindow::next_image(){
+    if (image_checker)
+    {
+        temp_directory = image_directory[i];
+
+        if (i == count - 1)
+        {
+            i = 0;
+        }
+        else
+        {
+            i++;
+        }
+        setAnimation();
+
+        if (anim_checker)
+        {
+            renderImage();
+            infoImage();
+        }
+        else
+        {
+            setAnimation();
+            renderImage();
+            infoImage();
+        }
+    }
+}
+
+
+void MainWindow::on_slideleft_clicked()
+{
+
+
+    previous_image();
+
+
+}
+
+void MainWindow::on_slideright_clicked()
+{
+
+    next_image();
+
+}
+
+
 
 void MainWindow::on_actionZoom_triggered()
 {
@@ -57,236 +207,163 @@ void MainWindow::on_actionZoom_2_triggered()
     QMessageBox::information(this, "title", "Zoom backward");
 }
 
-void MainWindow::on_actionCorrespondance_triggered()
-{
-    ui->picture1->setVisible(false);
-    ui->picture2->setVisible(false);
-    ui->picture3->setVisible(true);
-
-    ui->textimage3->setVisible(true);
-    ui->textimage2->setVisible(false);
-    ui->textimage1->setVisible(false);
-
-
-        QString text=namePicture1.split("Carac")[0]+"Corres."+namePicture1.split(".").back();
-        images IMG(this);
-        cv::Mat img1 = cv::imread((currentDirectory+"/"+namePicture1.split("Carac")[0].split(".")[0]+"."+namePicture1.split(".").back()).toStdString());
-            cv::Mat img2 = cv::imread((currentDirectory+"/"+namePicture2.split("Carac")[0].split(".")[0]+"."+namePicture1.split(".").back()).toStdString());
-
-            // Définir le détecteur et l'extraction de descripteurs SIFT
-            cv::Ptr<cv::FeatureDetector> detector = cv::SIFT::create();
-            cv::Ptr<cv::DescriptorExtractor> extractor = cv::SIFT::create();
-
-            // Détecter les points d'intérêt...
-            std::vector<cv::KeyPoint> keypoints1, keypoints2, keypoints3;
-            cv::Mat descriptors1, descriptors2;
-            detector->detect(img1, keypoints1);
-            detector->detect(img2, keypoints2);
-
-            // ...et extraire les descripteurs pour les deux images
-            extractor->compute(img1, keypoints1, descriptors1);
-            extractor->compute(img2, keypoints2, descriptors2);
-
-            // Trouver les correspondances de descripteurs entre les deux images
-            cv::Ptr<cv::DescriptorMatcher> matcher = cv::DescriptorMatcher::create(cv::DescriptorMatcher::FLANNBASED);
-            std::vector<cv::DMatch> matches12;
-            matcher->match(descriptors1, descriptors2, matches12);
-
-            // Filtrer les correspondances pour ne conserver que les correspondances les plus proches
-            double max_dist = 0;
-            double min_dist = 100;
-            double dist;
-            for (int i = 0; i < descriptors1.rows; i++)
-            {
-                dist = matches12[i].distance;
-                if (dist < min_dist)
-                    min_dist = dist;
-                if (dist > max_dist)
-                    max_dist = dist;
-            }
-            std::vector<cv::DMatch> good_matches12;
-            for (int i = 0; i < descriptors1.rows; i++)
-            {
-                if (matches12[i].distance < 2 * min_dist)
-                {
-                    good_matches12.push_back(matches12[i]);
-                }
-            }
-
-            max_dist = 0;
-            min_dist = 100;
-
-            // Calculer la matrice d'homographie à partir des correspondances de points d'intérêt
-            cv::Mat img_matches12;
-//            IMG.drawMatche(img1, keypoints1, img2, keypoints2, good_matches12, img_matches12);
-            IMG.drawMatche(img1, keypoints1, img2, keypoints2, matches12, img_matches12);
-
-            cv::Size size12 = img_matches12.size();
-            cv::Mat left(img_matches12, cv::Rect(0, 0, size12.width, size12.height));
-            img_matches12.copyTo(left);
-
-            // Afficher l'image finale avec les correspondances entre les deux images
-            cv::imwrite((currentDirectory+"/"+text).toStdString(), img_matches12);
-
-            cv::waitKey(0);
-
-    updatePictures(currentDirectory+"/"+text,3);
-
-}
-
-void MainWindow::on_actionTriangulation_triggered()
-{
-}
-
-void MainWindow::on_actionContact_us_triggered()
-{
-    QMessageBox::information(this, "title", "Help");
-}
-
-void MainWindow::on_actionCaracteristics_extraction_triggered()
+void MainWindow::updatePictures(QString s1)
 {
 
-        QString text=namePicture1.split(".")[0]+"Carac1"+"."+namePicture1.split(".").back();
-        QString text1=namePicture2.split(".")[0]+"Carac2"+"."+namePicture2.split(".").back();
+    ui->imagespace->setVisible(true);
+    ui->checkBox->setVisible(true);
+    ui->slideleft->setVisible(true);
+    ui->slideright->setVisible(true);
 
-        images img(this);
-        img.getCaracteristiques((currentDirectory + "/" + namePicture1),(currentDirectory+"/"+text), 1);
+    ui->infosimage->setVisible(true);
 
-        img.getCaracteristiques((currentDirectory + "/" + namePicture2),(currentDirectory+"/"+text1),2);
+    namePicture = s1.split("/").back();
+    ui->infosimage->setText("");
+    setImageInfos(s1);
+    setImage(s1);
 
-}
-
-void MainWindow::on_pushButton_clicked()
-{
 }
 
 void MainWindow::on_treeView_doubleClicked(const QModelIndex &index)
 {
-    ui->picture3->setVisible(false);
-    ui->picture1->setVisible(true);
-    ui->picture2->setVisible(true);
+    ui->imagespace->setVisible(true);
+    ui->checkBox->setVisible(true);
+    ui->infosimage->setVisible(true);
+    ui->slideleft->setVisible(true);
+    ui->slideright->setVisible(true);
 
-    ui->textimage3->setVisible(false);
-    ui->textimage2->setVisible(true);
-    ui->textimage1->setVisible(true);
-
-    QVariant data = ui->treeView->model()->data(index);
-    QString text = data.toString();
-    QPixmap *pixmap_img = new QPixmap(currentDirectory + "/" + text);
-    QImage img = pixmap_img->toImage();
-    const QPixmap *p = ui->picture1->pixmap();
-    const QPixmap *p2 = ui->picture2->pixmap();
-
-    QImageReader imgR(currentDirectory + "/" + text);
-    QString format(imgR.format());
-    QString name(imgR.fileName());
-    QSize size = imgR.size();
-    QString width = QString::number(size.width());
-    QString height = QString::number(size.width());
-
-    if (p == NULL)
-    {
-        ui->picture1->setPixmap(*pixmap_img);
-        ui->textimage1->setText(ui->textimage1->text() + "Nom: " + text + "\nType: " + format + "\nWidth: " + width + "\nHeight: " + height );
-        namePicture1 = text;
-        lastPictureAdded = 1;
+    image_checker = false;
+    count = 0;
+    QDir path(PATH);
+    QStringList imagesPath = path.entryList(QStringList() << "*.jpg" << "*.jpeg" << "*.bmp" << "*.pbm" << "*.pgm" << "*.ppm" << "*.xbm" << "*.xpm" << "*.png", QDir::Files);
+    foreach (QString filename, imagesPath) {
+        image_directory[count] = path.filePath(filename);
+        count ++;
     }
-    else if (p2 == NULL)
-    {
-        ui->picture2->setPixmap(*pixmap_img);
-        ui->textimage2->setText("");
-        ui->textimage2->setText(ui->textimage2->text() + "Nom: " + text + "\nType: " + format + "\nWidth: " + width + "\nHeight: " + height );
-        namePicture2 = text;
-        lastPictureAdded = 2;
+    if(count>0){
+        for (int var = 0; var < count; ++var) {
+            if(QString(currentDirectory+"/"+namePicture)==QString(image_directory[count])){
+                i=var;
+            }
+        }
+        image_checker = true;
+        QVariant data = ui->treeView->model()->data(index);
+        namePicture = data.toString();
+        setImage(currentDirectory+"/"+namePicture);
+        ui->infosimage->setText("");
+        setImageInfos(currentDirectory+"/"+namePicture);
     }
-    else if (lastPictureAdded == 1)
-    {
-        ui->picture2->setPixmap(*pixmap_img);
-        ui->textimage2->setText("");
-        ui->textimage2->setText(ui->textimage2->text() + "Nom: " + text + "\nType: " + format + "\nWidth: " + width + "\nHeight: " + height);
-        namePicture2 = text;
-        lastPictureAdded = 2;
+}
+
+void MainWindow::on_actionReconstruction_3D_triggered()
+{
+    ui->imagespace->setVisible(true);
+    ui->checkBox->setVisible(true);
+    if(ImagesSelectedForCorrespondance.size()!=2){
+        QMessageBox::information(this, "Information", "Vous devez sélectionner 2 images pour faire la correspondance");
+    }else{
+    images img(this);
+    QString offName=ImagesSelectedForCorrespondance[0].split(".")[0]+".off";
+    bool res=img.reconstruction3D(ImagesSelectedForCorrespondance[0],ImagesSelectedForCorrespondance[1],offName);
+
+    if(res){
+
     }
-    else
-    {
-        ui->picture1->setPixmap(*pixmap_img);
-        ui->textimage1->setText("");
-        ui->textimage1->setText(ui->textimage1->text() + "Nom: " + text + "\nType: " + format + "\nWidth: " + width + "\nHeight: " + height );
-        namePicture1 = text;
-        lastPictureAdded = 1;
     }
 }
 
 
-void MainWindow::updatePictures(QString s1, int nb)
+void MainWindow::on_actionMise_en_correspondance_triggered()
 {
+        ui->imagespace->setVisible(true);
+        ui->checkBox->setVisible(true);
+        if(ImagesSelectedForCorrespondance.size()!=2){
+            QMessageBox::information(this, "Information", "Vous devez sélectionner 2 images pour faire la correspondance");
+        }else{
 
-    ui->picture3->setVisible(false);
-    ui->picture1->setVisible(true);
-    ui->picture2->setVisible(true);
+            ui->infosimage->setVisible(true);
 
-    ui->textimage3->setVisible(false);
-    ui->textimage2->setVisible(true);
-    ui->textimage1->setVisible(true);
+            QString text=namePicture.split(".")[0]+"Corres."+namePicture.split(".").back();
+            images IMG(this);
+            cv::Mat img2 = cv::imread(ImagesSelectedForCorrespondance[1].toStdString());
+            cv::Mat img1 = cv::imread(ImagesSelectedForCorrespondance[0].toStdString());
 
-    if (nb == 1)
-    {
-        QImageReader imgR(s1);
+                // Définir le détecteur et l'extraction de descripteurs SIFT
+                cv::Ptr<cv::FeatureDetector> detector = cv::SIFT::create();
+                cv::Ptr<cv::DescriptorExtractor> extractor = cv::SIFT::create();
 
-        QString format(imgR.format());
-        QString name(imgR.fileName());
-        QSize size = imgR.size();
-        QString width = QString::number(size.width());
-        QString height = QString::number(size.width());
+                // Détecter les points d'intérêt...
+                std::vector<cv::KeyPoint> keypoints1, keypoints2, keypoints3;
+                cv::Mat descriptors1, descriptors2;
+                detector->detect(img1, keypoints1);
+                detector->detect(img2, keypoints2);
 
-        QPixmap *pixmap_img = new QPixmap(s1);
-        ui->picture1->setPixmap(*pixmap_img);
-        ui->textimage1->setText("");
-        ui->textimage1->setText(ui->textimage1->text() + "Nom: " + s1.split("/").back() + "\nType: " + format + "\nWidth: " + width + "\nHeight: " + height);
+                // ...et extraire les descripteurs pour les deux images
+                extractor->compute(img1, keypoints1, descriptors1);
+                extractor->compute(img2, keypoints2, descriptors2);
 
-        namePicture1 = s1.split("/").back();
-        lastPictureAdded = 1;
+                // Trouver les correspondances de descripteurs entre les deux images
+                cv::Ptr<cv::DescriptorMatcher> matcher = cv::DescriptorMatcher::create(cv::DescriptorMatcher::FLANNBASED);
+                std::vector<cv::DMatch> matches12;
+                matcher->match(descriptors1, descriptors2, matches12);
+
+                // Filtrer les correspondances pour ne conserver que les correspondances les plus proches
+                double max_dist = 0;
+                double min_dist = 100;
+                double dist;
+                for (int i = 0; i < descriptors1.rows; i++)
+                {
+                    dist = matches12[i].distance;
+                    if (dist < min_dist)
+                        min_dist = dist;
+                    if (dist > max_dist)
+                        max_dist = dist;
+                }
+                std::vector<cv::DMatch> good_matches12;
+                for (int i = 0; i < descriptors1.rows; i++)
+                {
+                    if (matches12[i].distance < 2 * min_dist)
+                    {
+                        good_matches12.push_back(matches12[i]);
+                    }
+                }
+
+                max_dist = 0;
+                min_dist = 100;
+
+                // Calculer la matrice d'homographie à partir des correspondances de points d'intérêt
+                cv::Mat img_matches12;
+                //IMG.drawMatche(img1, keypoints1, img2, keypoints2, good_matches12, img_matches12);
+                IMG.drawMatche(img1, keypoints1, img2, keypoints2, matches12, img_matches12);
+
+                cv::Size size12 = img_matches12.size();
+                cv::Mat left(img_matches12, cv::Rect(0, 0, size12.width, size12.height));
+                img_matches12.copyTo(left);
+
+                // Afficher l'image finale avec les correspondances entre les deux images
+                cv::imwrite((currentDirectory+"/"+text).toStdString(), img_matches12);
+
+                cv::waitKey(0);
+
+                updatePictures(currentDirectory+"/"+text);
+        }
+}
+
+void MainWindow::on_actionExtraction_de_caract_ristiques_triggered()
+{
+            QString text=namePicture.split(".")[0]+"Carac1"+"."+namePicture.split(".").back();
+
+            images img(this);
+            img.getCaracteristiques((currentDirectory + "/" + namePicture),(currentDirectory+"/"+text), 1);
+}
+
+void MainWindow::on_checkBox_clicked(bool checked)
+{
+    if(checked){
+        ImagesSelectedForCorrespondance.push_back(currentDirectory+"/"+namePicture);
+    }else{
+        std::vector<QString>::iterator it = std::find(ImagesSelectedForCorrespondance.begin(), ImagesSelectedForCorrespondance.end(), currentDirectory+"/"+namePicture);
+        ImagesSelectedForCorrespondance.erase(it);
     }
-    else if (nb == 2)
-    {
-        QImageReader imgR(s1);
 
-        QString format(imgR.format());
-        QString name(imgR.fileName());
-        QSize size = imgR.size();
-        QString width = QString::number(size.width());
-        QString height = QString::number(size.width());
-
-        QPixmap *pixmap_img = new QPixmap(s1);
-        ui->picture2->setPixmap(*pixmap_img);
-        ui->textimage2->setText("");
-        ui->textimage2->setText(ui->textimage2->text() + "Nom: " + s1.split("/").back() + "\nType: " + format + "\nWidth: " + width + "\nHeight: " + height);
-
-        namePicture2 = s1.split("/").back();
-        lastPictureAdded = 2;
-    }else if(nb==3){
-        ui->picture3->setVisible(true);
-        ui->picture1->setVisible(false);
-        ui->picture2->setVisible(false);
-
-        ui->textimage3->setVisible(true);
-        ui->textimage2->setVisible(false);
-        ui->textimage1->setVisible(false);
-
-        QImageReader imgR(s1);
-
-        QString format(imgR.format());
-        QString name(imgR.fileName());
-        QSize size = imgR.size();
-        QString width = QString::number(size.width());
-        QString height = QString::number(size.width());
-
-        QPixmap *pixmap_img = new QPixmap(s1);
-        ui->picture3->setPixmap(*pixmap_img);
-        ui->textimage3->setText("");
-        ui->textimage3->setText(ui->textimage3->text() + "Nom: " + s1.split("/").back() + "\nType: " + format + "\nWidth: " + width + "\nHeight: " + height);
-
-        namePicture3 = s1.split("/").back();
-        lastPictureAdded = 3;
-    }
 }

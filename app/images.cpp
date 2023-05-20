@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <iostream>
 #include <vector>
+#include <QProcess>
+#include <QDebug>
 
 using namespace cv;
 
@@ -31,8 +33,7 @@ void images::getCaracteristiques(QString in,QString out,int nb){
 
         cv::waitKey(0);
 
-        window->updatePictures(out,nb);
-
+        window->updatePictures(out);
 }
 
 
@@ -73,7 +74,39 @@ void sift_demo();
         int radius = 3 * draw_multiplier;
         circle(img, center, radius, color, 1, LINE_AA, draw_shift_bits);
     }
-}
+ }
+
+ bool images::reconstruction3D(QString arg1, QString arg2, QString arg3)
+ {
+     QProcess process;
+
+     // Définir le répertoire de travail
+     QString workingDirectory = "/home/fabien/Documents/FDS/M1/TER/TER/app/";
+     process.setWorkingDirectory(workingDirectory);
+
+     // Définir le programme Python et les arguments
+     QString program = "reconstruction.py";
+     QStringList arguments;
+
+     // Définir le programme et les arguments pour le processus
+     process.setProgram("python3");
+     arguments << arg1 << arg2 << arg3;
+
+     process.setArguments(QStringList() << program << arguments);
+
+     // Lancer le processus et attendre sa fin
+     process.start();
+     process.waitForFinished(-1);
+
+     // Récupérer la sortie standard du processus
+     QByteArray output = process.readAllStandardOutput();
+
+     // Afficher la sortie standard
+
+     return true;
+
+
+ }
 
 void images::_drawMatch(InputOutputArray outImg, InputOutputArray outImg1, InputOutputArray outImg2,
                 const KeyPoint &kp1, const KeyPoint &kp2, const Scalar &matchColor, DrawMatchesFlags flags,
