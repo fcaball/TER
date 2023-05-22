@@ -42,7 +42,7 @@
   
 # Paramètres à changer pour faire fonctionner l'application sur VOTRE PC :
 
-   -Dans le dossier intitulé "ter", allez dans le fichier "process.cpp" et changez tous les chemins d'accès aux executables           programmes externes appelés par l'application avec vos propres chemins vers ces exécutables (qui sont présents dans le build).
+   -Dans le dossier intitulé "ter", allez dans le fichier "process.cpp" et changez tous les chemins d'accès aux executables des       programmes externes appelés par l'application avec vos propres chemins vers ces exécutables (qui sont présents dans le             build).
   
     Exemple : "/home/marie/.../build/cloud_viewer" vous le remplacer par "/home/nom/.../Dossier_clonné/build/cloud_viewer"
 
