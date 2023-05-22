@@ -43,6 +43,8 @@
 # Paramètres à changer pour faire fonctionner l'application sur VOTRE PC :
 
    -Dans le dossier intitulé "ter", allez dans le fichier "process.cpp" et changez tous les chemins d'accès aux programmes            externes appelés par l'application avec vos propres chemins vers ces programmes.
+  
+    Exemple : "/home/marie/.../ViewCloud.cpp" vous le remplacer par "/home/nom/.../Dossier_clonné/Programme_externe.cpp
 
   
   
