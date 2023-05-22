@@ -30,8 +30,13 @@
   
 # Comment build ?
 
-  -Pour la librairie PCL, lors de l'installation, un fichier CMakeLists.txt sera déjà disponible. Pour build il suffit dans le       dossier de la librairie, d'ajouter un dossier build (mkdir build), d'aller dans ce dossier (cd build), puis de faire : cmake ..
-  puis make.
+  -Pour la librairie PCL, lors de l'installation, un fichier CMakeLists.txt sera déjà disponible. Pour build il suffit dans le       dossier de la librairie, d'ajouter un dossier build (mkdir build), d'aller dans ce dossier (cd build), puis de faire : 
+  
+  cmake ..
+  
+  puis 
+  
+  make
   
   -Pour les programmes externes à l'application, il y aura déjà un CMakeLists.txt de disponible lors du clonage du projet. Ainsi     il suffit de répéter les mêmes étapes que pour la librairie PCL, mais cette fois dans le dossier ou se trouvent les programmes     en question (normalement cela correspond au dossier qui englobe tout).
   
