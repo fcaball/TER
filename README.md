@@ -38,13 +38,13 @@
   
   make
   
-  -Pour les programmes externes à l'application, il y aura déjà un CMakeLists.txt de disponible lors du clonage du projet. Ainsi     il suffit de répéter les mêmes étapes que pour la librairie PCL, mais cette fois dans le dossier ou se trouvent les programmes     en question (normalement cela correspond au dossier qui englobe tout).
+  -Pour les programmes externes à l'application, il y aura déjà un CMakeLists.txt de disponible lors du clonage du projet. Ainsi     il suffit de répéter les mêmes étapes que pour la librairie PCL, mais cette fois dans le dossier ou se trouvent les programmes     en question (normalement cela correspond au dossier qui englobe tout). Cela va générer des executables dans le build en question   pour chacun des programmes nécessaires.
   
 # Paramètres à changer pour faire fonctionner l'application sur VOTRE PC :
 
-   -Dans le dossier intitulé "ter", allez dans le fichier "process.cpp" et changez tous les chemins d'accès aux programmes            externes appelés par l'application avec vos propres chemins vers ces programmes.
+   -Dans le dossier intitulé "ter", allez dans le fichier "process.cpp" et changez tous les chemins d'accès aux executables           programmes externes appelés par l'application avec vos propres chemins vers ces exécutables (qui sont présents dans le build).
   
-    Exemple : "/home/marie/.../ViewCloud.cpp" vous le remplacer par "/home/nom/.../Dossier_clonné/Programme_externe.cpp
+    Exemple : "/home/marie/.../build/cloud_viewer" vous le remplacer par "/home/nom/.../Dossier_clonné/build/cloud_viewer"
 
   
   
