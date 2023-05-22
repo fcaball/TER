@@ -30,21 +30,24 @@
   
 # Comment build ?
 
-  -Pour la librairie PCL, lors de l'installation, un fichier CMakeLists.txt sera déjà disponible. Pour build il suffit dans le       dossier de la librairie, d'ajouter un dossier build (mkdir build), d'aller dans ce dossier (cd build), puis de faire : 
+  -Pour la librairie PCL, lors de l'installation, un fichier CMakeLists.txt sera déjà disponible. Pour build il suffit, dans le      dossier de la librairie, vous devrait faire les lignes de commandes suivantes : 
   
+  mkdir build
+  cd build
   cmake ..
+  make
+ 
   
-  puis 
+  -Pour les programmes externes à l'application, il y aura déjà un CMakeLists.txt, dans le dossier "application_photogrammétrie", de disponible lors du clonage du projet. Vous devez appeler le dossier par : "buildPCL". Donc il faudra faire les lignes de commandes suivantes :
   
+  mkdir buildPCL
+  cd buildPCL
+  cmake ..
   make
   
-  -Pour les programmes externes à l'application, il y aura déjà un CMakeLists.txt de disponible lors du clonage du projet. Ainsi     il suffit de répéter les mêmes étapes que pour la librairie PCL, mais cette fois dans le dossier ou se trouvent les programmes     en question (normalement cela correspond au dossier qui englobe tout). Cela va générer des executables dans le build en question   pour chacun des programmes nécessaires.
+  Cela génèrera les exécutables nécessaire à la bonne exécution des options de l'application.
+ 
   
-# Paramètres à changer pour faire fonctionner l'application sur VOTRE PC :
-
-   -Dans le dossier intitulé "ter", allez dans le fichier "process.cpp" et changez tous les chemins d'accès aux executables des       programmes externes appelés par l'application avec vos propres chemins vers ces exécutables (qui sont présents dans le             build). Pour les fichiers Python, ils se trouvent dans le dossier intitulé "opencv". Pour appeler ces fichiers il faut changer     le chemin vers ceux-ci dans le fichier process.cpp.
-  
-    Exemple pour les executables : "/home/marie/.../build/cloud_viewer" vous le remplacer par "/home/nom/cheminversledossierclonné/build/cloud_viewer"
-    Exemple pour les fichiers .py : "/home/marie/.../opencv/reconstruction.py" vous le remplacer par "/home/nom/cheminversledossierclonné/opencv/reconstruction.py"
+    
   
   
