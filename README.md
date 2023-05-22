@@ -1,4 +1,4 @@
-# TER
+# Reconstruction 3D d'objets à partir d'images 2D, par la photogrammétrie - La Fratrie des lumières
 
 # Les librairies à installer pour faire fonctionner l'application :
 
