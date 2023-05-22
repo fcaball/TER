@@ -42,7 +42,7 @@
   
 # Paramètres à changer pour faire fonctionner l'application sur VOTRE PC :
 
-   -Dans le dossier intitulé "ter", allez dans le fichier "process.cpp" et changez tous les chemins d'accès aux executables des       programmes externes appelés par l'application avec vos propres chemins vers ces exécutables (qui sont présents dans le             build).
+   -Dans le dossier intitulé "ter", allez dans le fichier "process.cpp" et changez tous les chemins d'accès aux executables des       programmes externes appelés par l'application avec vos propres chemins vers ces exécutables (qui sont présents dans le             build). Pour les fichiers Python, ils se trouvent dans le dossier intitulé "opencv". Pour appeler ces fichiers il faut changer     le chemin vers ceux-ci dans le fichier process.cpp.
   
     Exemple : "/home/marie/.../build/cloud_viewer" vous le remplacer par "/home/nom/.../Dossier_clonné/build/cloud_viewer"
 
