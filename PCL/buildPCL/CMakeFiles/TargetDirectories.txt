@@ -1,6 +1,0 @@
-/home/marie/Desktop/PCL/buildPCL/CMakeFiles/rebuild_cache.dir
-/home/marie/Desktop/PCL/buildPCL/CMakeFiles/edit_cache.dir
-/home/marie/Desktop/PCL/buildPCL/CMakeFiles/off_to_ply.dir
-/home/marie/Desktop/PCL/buildPCL/CMakeFiles/pipeline_pcd.dir
-/home/marie/Desktop/PCL/buildPCL/CMakeFiles/view_pcd.dir
-/home/marie/Desktop/PCL/buildPCL/CMakeFiles/ply_to_pcd.dir
