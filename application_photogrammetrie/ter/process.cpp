@@ -39,7 +39,7 @@ bool Process::correspondance(QString arg1, QString arg2,QString path)
     QString pythonCommand = "python3";
 
     QStringList pythonArguments;
-    pythonArguments << "/home/marie/Desktop/PCL/opencv/ptsInteret_Corres.py" << arg1 << arg2<<path<<QString::number(1);
+    pythonArguments << "../opencv/ptsInteret_Corres.py" << arg1 << arg2<<path<<QString::number(1);
 
     // Création du processus
     QProcess process;
@@ -65,7 +65,7 @@ bool Process::pointCloud(QString arg1, QString arg2,QString arg3,QString arg4)
         QString pythonCommand = "python3";
 
         QStringList pythonArguments;
-        pythonArguments << "/home/marie/Desktop/PCL/opencv/reconstruction.py" << arg2 << arg3<<arg1+"/Points3D.off";
+        pythonArguments << "../opencv/reconstruction.py" << arg2 << arg3<<arg1+"/Points3D.off";
 
         // Création du processus
         QProcess process;
@@ -76,7 +76,7 @@ bool Process::pointCloud(QString arg1, QString arg2,QString arg3,QString arg4)
         // OFF TO PLY
 
         // Commande Python à exécuter
-        QString offply = "/home/marie/Desktop/PCL/buildPCL/off_to_ply";
+        QString offply = "../buildPCL/off_to_ply";
 
         QStringList offplyArguments;
         offplyArguments << arg1+"/Points3D.off" << arg1+"/Points3D.ply";
@@ -89,7 +89,7 @@ bool Process::pointCloud(QString arg1, QString arg2,QString arg3,QString arg4)
         // PLY TO PCD
 
         //Commande Python à exécuter
-        QString plypcd = "/home/marie/Desktop/PCL/buildPCL/ply_to_pcd";
+        QString plypcd = "../buildPCL/ply_to_pcd";
 
         QStringList plypcdArguments;
         plypcdArguments << arg1+"/Points3D.ply" << arg4;
@@ -101,7 +101,7 @@ bool Process::pointCloud(QString arg1, QString arg2,QString arg3,QString arg4)
 
         //View PCD
 
-        QString pythonCommand1 = "/home/marie/Desktop/PCL/buildPCL/view_pcd";
+        QString pythonCommand1 = "../buildPCL/view_pcd";
         QStringList pythonArguments1;
         pythonArguments1 << arg4;
 
@@ -130,7 +130,7 @@ bool Process::getCaracteristique(QString arg1, QString arg2,QString path)
     QString pythonCommand = "python3";
 
     QStringList pythonArguments;
-    pythonArguments << "/home/marie/Desktop/PCL/opencv/ptsInteret_Corres.py" << arg1 << arg2<<path<<QString::number(0);
+    pythonArguments << "../opencv/ptsInteret_Corres.py" << arg1 << arg2<<path<<QString::number(0);
 
     // Création du processus
     QProcess process;
@@ -151,7 +151,7 @@ bool Process::reconstruction3D(QString arg1, QString arg2, QString arg3)
     // Connectez le signal started du thread à un lambda qui contient votre code
     QObject::connect(thread, &QThread::started, [=]() {
         w->setCursor(Qt::WaitCursor);
-        QString pythonCommand1 = "/home/marie/Desktop/PCL/buildPCL/pipeline_pcd";
+        QString pythonCommand1 = "../buildPCL/pipeline_pcd";
         QStringList pythonArguments1;
         pythonArguments1 << arg1 << arg2<< arg3<<QString::number(1);
 
@@ -180,7 +180,7 @@ bool Process::pointcloudfinalrecale(QString arg1, QString arg2)
     QObject::connect(thread, &QThread::started, [=]() {
         w->setCursor(Qt::WaitCursor);
 
-        QString pythonCommand1 = "/home/marie/Desktop/PCL/buildPCL/pipeline_pcd";
+        QString pythonCommand1 = "../buildPCL/pipeline_pcd";
         QStringList pythonArguments1;
         pythonArguments1 << arg1 << arg2 << "arg3" << QString::number(0);
 
